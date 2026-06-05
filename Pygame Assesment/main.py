@@ -38,10 +38,17 @@ class world():
                 True,
                 "black"
             )
+            text4 = font.render(
+                "press 3 for Flappybird",
+                True,
+                "black"
+            )
 
+            
             screen.blit(text1, (0, 0))
             screen.blit(text2, (0, 20))
             screen.blit(text3, (0, 40))
+            screen.blit(text4, (0, 60))
 
             for event in pygame.event.get():
 
@@ -67,6 +74,16 @@ class world():
 
                         subprocess.run(
                             ["python", "sonic.py"]
+                        )
+
+                        sys.exit()
+                        
+                    if event.key == pygame.K_3:
+
+                        pygame.quit()
+
+                        subprocess.run(
+                            ["python", "Flappybird.py"]
                         )
 
                         sys.exit()
