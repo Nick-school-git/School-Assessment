@@ -100,15 +100,21 @@ class Bird(pygame.sprite.Sprite):
 
 
 
+            if keys[pygame.MOUSEBUTTONDOWN] == 1 and self.clicked_mouse == False:
+                self.clicked_mouse = True
+                self.vel = -10
 
+            if keys[pygame.MOUSEBUTTONDOWN] == 0:
+                self.clicked_mouse = False
+        
             #left click
-            if pygame.mouse.get_pressed()[0] == 1 and self.clicked_mouse == False :
+         """if pygame.mouse.get_pressed()[0] == 1 and self.clicked_mouse == False :
                 self.clicked_mouse = True
                 self.vel = -10
 
             if pygame.mouse.get_pressed()[0] == 0:
                 self.clicked_mouse = False
-
+"""
 
 
         #handle the animation
