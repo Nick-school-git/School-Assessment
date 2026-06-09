@@ -31,7 +31,7 @@ game_over = False
 pipe_gap = 250
 pipe_frequency = 1500 #milliseconds
 last_pipe = pygame.time.get_ticks() - pipe_frequency
-score = 0 
+score = 0
 pass_pipe = False
 font = pygame.font.SysFont(None, 24)
 
@@ -86,29 +86,31 @@ class Bird(pygame.sprite.Sprite):
 
         if game_over == False:
             #jumping
-            #space
-            keys = pygame.key.get_pressed()
-            
-            if keys[pygame.K_SPACE] == 1 and self.clicked_space == False:
+
+                #space
+            space_bar = pygame.key.get_pressed()[pygame.K_SPACE]
+            mouse = pygame.mouse.get_pressed()[0]
+
+            if space_bar == 1 and self.clicked_space == False:
                 self.clicked_space = True
                 self.vel = -10
-            if keys[pygame.K_SPACE] == 0:
+            if space_bar == 0:
                 self.clicked_space = False
 
 
 
 
 
-
-            if keys[pygame.MOUSEBUTTONDOWN] == 1 and self.clicked_mouse == False:
+                #left click cleaner and more like space bar code
+            if mouse == 1 and self.clicked_mouse == False:
                 self.clicked_mouse = True
                 self.vel = -10
 
-            if keys[pygame.MOUSEBUTTONDOWN] == 0:
+            if mouse == 0:
                 self.clicked_mouse = False
         
-            #left click
-         """if pygame.mouse.get_pressed()[0] == 1 and self.clicked_mouse == False :
+                #left click
+            """if pygame.mouse.get_pressed()[0] == 1 and self.clicked_mouse == False :
                 self.clicked_mouse = True
                 self.vel = -10
 
@@ -159,7 +161,7 @@ class Button():
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
     def draw(self):
-        keys = pygame.key.get_pressed()
+        space_bar = pygame.key.get_pressed()[pygame.K_SPACE]
         action = False
 
         #get mouse position
@@ -170,7 +172,7 @@ class Button():
             if pygame.mouse.get_pressed()[0] == 1:
                 action = True
 
-        elif keys[pygame.K_SPACE] == 1:
+        elif space_bar == 1:
             action = True
 
         #draw button
@@ -217,10 +219,12 @@ while run:
             if bird_group.sprites()[0].rect.left > pipe_group.sprites()[0].rect.right:
                 pass_pipe = False             
                 score += 1
-                scroll_speed +=1
-                pipe_frequency -= 50
-                if pipe_frequency < 100:
-                    pipe_frequency = 100
+                scroll_speed = (score * 0.25) + 4
+                pipe_frequency = (score* -20) + 1500
+                pipe_gap = random.uniform(200,350)
+               # if pipe_frequency < 100:
+                #    pipe_frequency = 100
+
 
     draw_text(str(score), font, white, int(screen_width / 2), 20)
 
