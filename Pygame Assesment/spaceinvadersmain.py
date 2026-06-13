@@ -10,6 +10,10 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT),pygame.SCALED)
 clock = pygame.time.Clock()
 
 font = pygame.font.SysFont(None, 24)
+#define sounds
+death = pygame.mixer.Sound('explosion.wav')
+invader_intro = pygame.mixer.Sound('invaders_intro.wav')
+shoot = pygame.mixer.Sound('shoot.wav')
 
 class Enemy:
     def __init__(self, x, y):
@@ -123,6 +127,7 @@ for row in range(3):
 
 game_state = "playing"  
 running = True
+invaders_intro.play()
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -132,6 +137,7 @@ while running:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     bullets.append(Bullet(player.rect.center))
+                    shoot.play()
 
     if game_state == "playing":
   
@@ -151,6 +157,7 @@ while running:
                 if bullet.rect.colliderect(enemy.rect):
                     bullets.remove(bullet)
                     enemies.remove(enemy)
+                    death.play()
                     break
 
 
