@@ -34,6 +34,15 @@ last_pipe = pygame.time.get_ticks() - pipe_frequency
 score = 0
 pass_pipe = False
 font = pygame.font.SysFont(None, 24)
+#Define Sounds
+flappy_die = pygame.mixer.sound('Sounds/flappy_die.wav')
+flappy_wack = pygame.mixer.sound('flappy_wack.wav')
+point = pygame.mixer.sound('point.wav')
+
+#Load main song
+pygame.mixer.music.load('flappy_main_song.wav')
+#play main song
+pygame.mixer.music.play(-1,0.0)#-1 means repeat 0.0 means start at 0.0 seconds
 
 
 #load images
@@ -222,6 +231,7 @@ while run:
                 scroll_speed = (score * 0.25) + 4
                 pipe_frequency = (score* -20) + 1500
                 pipe_gap = random.uniform(200,350)
+                point.play()
                # if pipe_frequency < 100:
                 #    pipe_frequency = 100
 
@@ -230,6 +240,9 @@ while run:
 
     if pygame.sprite.groupcollide(bird_group, pipe_group, False , False) or flappy.rect.top < 0 :
         game_over = True
+        flappy_wack.play()
+        pygame.time.delay(1000)
+        flappy_die.play()
 
     #ground hit check
     if flappy.rect.bottom >= 768:
