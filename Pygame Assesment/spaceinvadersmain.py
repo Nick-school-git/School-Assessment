@@ -11,9 +11,9 @@ clock = pygame.time.Clock()
 
 font = pygame.font.SysFont(None, 24)
 #define sounds
-death = pygame.mixer.Sound('explosion.wav')
-invader_intro = pygame.mixer.Sound('invaders_intro.wav')
-shoot = pygame.mixer.Sound('shoot.wav')
+death = pygame.mixer.Sound('Sounds/explosion.wav')
+invaders_intro = pygame.mixer.Sound('Sounds/invaders_intro.wav')
+shoot = pygame.mixer.Sound('Sounds/shoot.wav')
 
 class Enemy:
     def __init__(self, x, y):
@@ -122,8 +122,8 @@ bullets = []
 enemies = []
 
 for row in range(3):
-    for col in range(6):
-        enemies.append(Enemy(40 + col * 40, 20 + row * 30))
+    for col in range(3):
+        enemies.append(Enemy(110 + col * 40, 20 + row * 30))
 
 game_state = "playing"  
 running = True
