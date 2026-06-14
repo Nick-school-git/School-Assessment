@@ -23,6 +23,7 @@ SONIC(MADE BY AI):
     down arrow to roll
   How to play:
     move around and collect the coins get to the end to win
+    
 FLAPPYBIRD:
   controls:
     left click and space to jump
