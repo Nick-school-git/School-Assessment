@@ -36,11 +36,11 @@ pass_pipe = False
 font = pygame.font.SysFont(None, 24)
 #Define Sounds
 flappy_die = pygame.mixer.sound('Sounds/flappy_die.wav')
-flappy_wack = pygame.mixer.sound('flappy_wack.wav')
-point = pygame.mixer.sound('point.wav')
+flappy_wack = pygame.mixer.sound('Sounds/flappy_wack.wav')
+point = pygame.mixer.sound('Sounds/point.wav')
 
 #Load main song
-pygame.mixer.music.load('flappy_main_song.wav')
+pygame.mixer.music.load('Sounds/flappy_main_song.wav')
 #play main song
 pygame.mixer.music.play(-1,0.0)#-1 means repeat 0.0 means start at 0.0 seconds
 
@@ -239,7 +239,7 @@ while run:
     draw_text(str(score), font, white, int(screen_width / 2), 20)
 
     if pygame.sprite.groupcollide(bird_group, pipe_group, False , False) or flappy.rect.top < 0 :
-        game_over = True
+        game_over = True  
         flappy_wack.play()
         pygame.time.delay(1000)
         flappy_die.play()
